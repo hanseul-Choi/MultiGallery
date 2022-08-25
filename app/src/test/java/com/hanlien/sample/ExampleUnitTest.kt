@@ -1,4 +1,4 @@
-package com.hanlien.multigallery
+package com.hanlien.sample
 
 import org.junit.Test
 

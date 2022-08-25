@@ -1,4 +1,4 @@
-package com.hanlien.multigallery
+package com.hanlien.sample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
