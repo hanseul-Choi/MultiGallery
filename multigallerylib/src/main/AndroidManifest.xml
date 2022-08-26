@@ -8,7 +8,7 @@
         android:theme="@style/Theme.Basic"
         android:allowBackup="true">
 
-        <activity android:name=".ImageActivity"
+        <activity android:name=".MainGalleryActivity"
             android:theme="@style/Theme.Basic.NoActionBar"
             android:exported="true">
             <intent-filter>
