@@ -24,5 +24,11 @@ class AlbumFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val adapter = AlbumAdapter()
+
+        adapter.submitList(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+
+        binding.albumListRv.adapter = adapter
     }
 }
