@@ -16,4 +16,32 @@
     </style>
 
     <style name="Theme.Basic.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>
+
+    <style name="Dalseo">
+        <item name="fontFamily">@font/dalseo_darling</item>
+    </style>
+
+    <style name="DalseoBold">
+        <item name="fontFamily">@font/dalseo_healing_bold</item>
+    </style>
+
+    <style name="Dalseo.H1">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="DalseoBold.H1">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Dalseo.H2">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="DalseoBold.H2">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Dalseo.H4">
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

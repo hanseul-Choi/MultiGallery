@@ -9,4 +9,6 @@ object Constants {
 
     const val ALBUM_TITLE = "Select Album"
     const val IMAGE_TITLE = "Select Images"
+
+    const val PERMISSION_REQUEST_CODE = 1000
 }

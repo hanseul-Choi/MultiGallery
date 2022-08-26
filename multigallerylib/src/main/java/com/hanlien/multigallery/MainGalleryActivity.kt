@@ -1,11 +1,15 @@
 package com.hanlien.multigallery
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.hanlien.multigallery.databinding.ActivityMultigalleryMainBinding
-
 
 /**
  *  Builder 패턴으로 Title이나 button 이름 그리고 limit image 설명문을 넣으면 괜찮을 것 같음
@@ -15,8 +19,22 @@ class MainGalleryActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMultigalleryMainBinding
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // 권한 확인
+        val writePermission = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+
+        if(writePermission == PackageManager.PERMISSION_DENIED) {
+            requestPermissions(
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                Constants.PERMISSION_REQUEST_CODE
+            )
+        }
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_multigallery_main)
 
