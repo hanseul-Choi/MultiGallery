@@ -1,9 +1,11 @@
 package com.hanlien.sample
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.hanlien.multigallery.ImageActivity
 import com.hanlien.sample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +17,8 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.testBtn.setOnClickListener {
-            Toast.makeText(this, "on click", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, ImageActivity::class.java)
+            startActivity(intent)
         }
     }
 }
