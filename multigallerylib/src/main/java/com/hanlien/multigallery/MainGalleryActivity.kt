@@ -14,8 +14,10 @@ import com.hanlien.multigallery.databinding.ActivityMultigalleryMainBinding
 /**
  *  -- 작업 순서 --
  *  1. 사진 선택 되었을 때, 이미지 선택 표시 (view)
- *  2. 사진 선택 되었을 때, Add 클릭시 FileUri로 정보 저장
- *  3. 사진 선택 limit 선택 기능 추가
+ *  1.1 imageButton selected로 custom
+ *  2. Contents Provider를 이용하여 갤러리 가져오기
+ *  3. 사진 선택 되었을 때, Add 클릭시 FileUri로 정보 저장
+ *  4. 사진 선택 limit 선택 기능 추가
  */
 
 /**
