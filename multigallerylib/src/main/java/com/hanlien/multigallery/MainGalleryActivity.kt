@@ -12,6 +12,13 @@ import androidx.databinding.DataBindingUtil
 import com.hanlien.multigallery.databinding.ActivityMultigalleryMainBinding
 
 /**
+ *  -- 작업 순서 --
+ *  1. 사진 선택 되었을 때, 이미지 선택 표시 (view)
+ *  2. 사진 선택 되었을 때, Add 클릭시 FileUri로 정보 저장
+ *  3. 사진 선택 limit 선택 기능 추가
+ */
+
+/**
  *  Builder 패턴으로 Title이나 button 이름 그리고 limit image 설명문을 넣으면 괜찮을 것 같음
  */
 
