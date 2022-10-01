@@ -1,13 +1,15 @@
 package com.hanlien.multigallery
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hanlien.multigallery.databinding.ItemAlbumBinding
+import com.hanlien.multigallery.model.Album
 
-class AlbumAdapter : ListAdapter<Int, AlbumAdapter.AlbumViewHolder>(AlbumDiffCallback()) {
+class AlbumAdapter : ListAdapter<Album, AlbumAdapter.AlbumViewHolder>(AlbumDiffCallback()) {
 
     lateinit var binding: ItemAlbumBinding
 
@@ -21,20 +23,25 @@ class AlbumAdapter : ListAdapter<Int, AlbumAdapter.AlbumViewHolder>(AlbumDiffCal
         holder.bind(getItem(position))
     }
 
-    inner class AlbumViewHolder(binding: ItemAlbumBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(image: Int) {
-
+    inner class AlbumViewHolder(private val IABinding: ItemAlbumBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Album) {
+            IABinding.albumImageSiv.setOnClickListener {
+                if(IABinding.albumSelectFrameV.visibility == View.VISIBLE) {
+                    IABinding.albumSelectFrameV.visibility = View.GONE
+                } else if(IABinding.albumSelectFrameV.visibility == View.GONE) {
+                    IABinding.albumSelectFrameV.visibility = View.VISIBLE
+                }
+            }
         }
     }
 }
 
-class AlbumDiffCallback: DiffUtil.ItemCallback<Int>() {
-    override fun areItemsTheSame(oldItem: Int, newItem: Int): Boolean {
+class AlbumDiffCallback: DiffUtil.ItemCallback<Album>() {
+    override fun areItemsTheSame(oldItem: Album, newItem: Album): Boolean {
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: Int, newItem: Int): Boolean {
+    override fun areContentsTheSame(oldItem: Album, newItem: Album): Boolean {
         return oldItem == newItem
     }
-
 }

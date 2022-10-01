@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.hanlien.multigallery.databinding.FragmentAlbumBinding
 import com.hanlien.multigallery.databinding.FragmentImageBinding
+import com.hanlien.multigallery.model.Album
 
 class AlbumFragment : Fragment() {
 
@@ -27,7 +28,9 @@ class AlbumFragment : Fragment() {
 
         val adapter = AlbumAdapter()
 
-        adapter.submitList(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+        adapter.submitList(listOf(
+            Album(),Album(),Album(),Album(),Album(),Album(),Album(),Album(),Album(),Album()
+        ))
 
         binding.albumListRv.adapter = adapter
     }
