@@ -25,6 +25,8 @@ class AlbumAdapter : ListAdapter<Album, AlbumAdapter.AlbumViewHolder>(AlbumDiffC
 
     inner class AlbumViewHolder(private val IABinding: ItemAlbumBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Album) {
+            binding.album = item
+
             IABinding.albumImageSiv.setOnClickListener {
                 if(IABinding.albumSelectFrameV.visibility == View.VISIBLE) {
                     IABinding.albumSelectFrameV.visibility = View.GONE

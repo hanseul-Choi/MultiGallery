@@ -3,9 +3,11 @@
     package="com.hanlien.multigallery">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:theme="@style/Theme.Basic"
+        android:requestLegacyExternalStorage="true"
         android:allowBackup="true">
 
         <activity android:name=".MainGalleryActivity"

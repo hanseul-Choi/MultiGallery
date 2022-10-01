@@ -38,10 +38,22 @@ class MainGalleryActivity : AppCompatActivity() {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
 
+        val readPermission = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+
         if(writePermission == PackageManager.PERMISSION_DENIED) {
             requestPermissions(
                 arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                Constants.PERMISSION_REQUEST_CODE
+                Constants.PERMISSION_WRITE_REQUEST_CODE
+            )
+        }
+
+        if(readPermission == PackageManager.PERMISSION_DENIED) {
+            requestPermissions(
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                Constants.PERMISSION_READ_REQUEST_CODE
             )
         }
 
