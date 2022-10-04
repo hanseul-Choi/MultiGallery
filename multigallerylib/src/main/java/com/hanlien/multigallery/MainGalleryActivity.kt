@@ -43,14 +43,14 @@ class MainGalleryActivity : AppCompatActivity() {
             Manifest.permission.READ_EXTERNAL_STORAGE
         )
 
-        if(writePermission == PackageManager.PERMISSION_DENIED) {
+        if (writePermission == PackageManager.PERMISSION_DENIED) {
             requestPermissions(
                 arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                 Constants.PERMISSION_WRITE_REQUEST_CODE
             )
         }
 
-        if(readPermission == PackageManager.PERMISSION_DENIED) {
+        if (readPermission == PackageManager.PERMISSION_DENIED) {
             requestPermissions(
                 arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                 Constants.PERMISSION_READ_REQUEST_CODE
@@ -77,9 +77,9 @@ class MainGalleryActivity : AppCompatActivity() {
         binding.mainTopbarTb.setNavigationOnClickListener {
             Toast.makeText(this, "click back", Toast.LENGTH_SHORT).show()
 
-            if(supportFragmentManager.findFragmentByTag(Constants.IMAGE_FRAGMENT_ID)?.isVisible == true) {
+            if (supportFragmentManager.findFragmentByTag(Constants.IMAGE_FRAGMENT_ID)?.isVisible == true) {
                 moveToAlbumView()
-            } else if(supportFragmentManager.findFragmentByTag(Constants.ALBUM_FRAGMENT_ID)?.isVisible == true) {
+            } else if (supportFragmentManager.findFragmentByTag(Constants.ALBUM_FRAGMENT_ID)?.isVisible == true) {
                 finish()
             }
         }
@@ -88,20 +88,44 @@ class MainGalleryActivity : AppCompatActivity() {
         binding.selectBtn.setOnClickListener {
             Toast.makeText(this, "click add", Toast.LENGTH_SHORT).show()
 
-            if(supportFragmentManager.findFragmentByTag(Constants.IMAGE_FRAGMENT_ID)?.isVisible == true) {
+            if (supportFragmentManager.findFragmentByTag(Constants.IMAGE_FRAGMENT_ID)?.isVisible == true) {
                 // Image Add 작업
 
-            } else if(supportFragmentManager.findFragmentByTag(Constants.ALBUM_FRAGMENT_ID)?.isVisible == true) {
+            } else if (supportFragmentManager.findFragmentByTag(Constants.ALBUM_FRAGMENT_ID)?.isVisible == true) {
                 moveToImageView()
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        when (requestCode) {
+            Constants.PERMISSION_WRITE_REQUEST_CODE -> {
+                if ((grantResults.isNotEmpty())
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    moveToAlbumView()
+                } else {
+
+                }
+
+                return
             }
         }
     }
 
     private fun moveToImageView() {
         supportFragmentManager.beginTransaction()
-            .replace(binding.fragmentContainerFl.id,
+            .replace(
+                binding.fragmentContainerFl.id,
                 ImageFragment(),
-                Constants.IMAGE_FRAGMENT_ID)
+                Constants.IMAGE_FRAGMENT_ID
+            )
             .commitAllowingStateLoss()
 
         binding.mainTopbarTb.title = Constants.IMAGE_TITLE
