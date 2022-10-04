@@ -44,6 +44,8 @@ class MainGalleryActivity : AppCompatActivity() {
         )
 
         if (writePermission == PackageManager.PERMISSION_DENIED) {
+            shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
             requestPermissions(
                 arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                 Constants.PERMISSION_WRITE_REQUEST_CODE
@@ -97,6 +99,7 @@ class MainGalleryActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -106,12 +109,15 @@ class MainGalleryActivity : AppCompatActivity() {
 
         when (requestCode) {
             Constants.PERMISSION_WRITE_REQUEST_CODE -> {
-                if ((grantResults.isNotEmpty())
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                ) {
-                    moveToAlbumView()
-                } else {
+                if (grantResults.isNotEmpty()) {
+                    if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                        moveToAlbumView()
+                    } else {
 
+                        Toast.makeText(this, "권한을 허용하셔야 사용이 가능합니다.", Toast.LENGTH_SHORT).show()
+
+                        finish()
+                    }
                 }
 
                 return
