@@ -7,5 +7,6 @@ data class Album(
     val uri: Uri? = null,
     val file: File? = null,
     val path: String? = null,
-    val isSelected : Boolean = false
+    val isSelected : Boolean = false,
+    val title: String? = null
 )
