@@ -7,20 +7,22 @@ import android.provider.MediaStore
 import androidx.annotation.RequiresApi
 
 class ImageGetter(private val resolver: ContentResolver?) {
-    fun getImageCursor(): Cursor {
+    fun getImageCursor(album: String): Cursor {
         var queryUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
 
         val what = arrayOf(
             MediaStore.Images.ImageColumns._ID,
             MediaStore.Images.ImageColumns.TITLE,
-            MediaStore.Images.ImageColumns.DATE_TAKEN
+            MediaStore.Images.ImageColumns.DATE_TAKEN,
+            MediaStore.Images.ImageColumns.DATA
         )
 
         val orderBy = MediaStore.Images.ImageColumns.DATE_TAKEN + " DESC"
 
         queryUri = queryUri.buildUpon().appendQueryParameter("limit", "1").build()
 
-        return resolver?.query(queryUri, what, null, null, orderBy)!!
+        return resolver?.query(
+            queryUri, what, MediaStore.Images.Media.BUCKET_DISPLAY_NAME + " =?", arrayOf(album), orderBy)!!
     }
 
     fun getAlbumCursor() : Cursor {
