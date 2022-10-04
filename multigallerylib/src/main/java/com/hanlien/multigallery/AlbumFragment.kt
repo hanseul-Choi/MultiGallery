@@ -12,7 +12,7 @@ import com.hanlien.multigallery.model.Album
 import java.lang.Exception
 import kotlin.collections.ArrayList
 
-class AlbumFragment : Fragment() {
+class AlbumFragment : Fragment(), AlbumClickListener {
 
     private lateinit var binding: FragmentAlbumBinding
 
@@ -32,7 +32,7 @@ class AlbumFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = AlbumAdapter()
+        val adapter = AlbumAdapter(this)
 
         getAlbums()
 
@@ -43,7 +43,7 @@ class AlbumFragment : Fragment() {
         binding.albumListRv.adapter = adapter
     }
 
-    fun getAlbums() {
+    private fun getAlbums() {
         try {
             val cursor = ImageGetter(
                 activity?.contentResolver
@@ -81,5 +81,9 @@ class AlbumFragment : Fragment() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    override fun onClickAlbum(item: String) {
+        (activity as MainGalleryActivity).moveToImageView(item)
     }
 }

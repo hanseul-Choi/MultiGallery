@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import com.hanlien.multigallery.databinding.ActivityMultigalleryMainBinding
 
@@ -94,7 +95,7 @@ class MainGalleryActivity : AppCompatActivity() {
                 // Image Add 작업
 
             } else if (supportFragmentManager.findFragmentByTag(Constants.ALBUM_FRAGMENT_ID)?.isVisible == true) {
-                moveToImageView()
+//                moveToImageView()
             }
         }
     }
@@ -113,7 +114,6 @@ class MainGalleryActivity : AppCompatActivity() {
                     if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                         moveToAlbumView()
                     } else {
-
                         Toast.makeText(this, "권한을 허용하셔야 사용이 가능합니다.", Toast.LENGTH_SHORT).show()
 
                         finish()
@@ -125,11 +125,17 @@ class MainGalleryActivity : AppCompatActivity() {
         }
     }
 
-    private fun moveToImageView() {
+    internal fun moveToImageView(albumTitle: String) {
+        val bundle = Bundle().apply {
+            putString("album", albumTitle)
+        }
+
         supportFragmentManager.beginTransaction()
             .replace(
                 binding.fragmentContainerFl.id,
-                ImageFragment(),
+                ImageFragment().apply {
+                      arguments = bundle
+                },
                 Constants.IMAGE_FRAGMENT_ID
             )
             .commitAllowingStateLoss()
@@ -146,6 +152,6 @@ class MainGalleryActivity : AppCompatActivity() {
         ).commitAllowingStateLoss()
 
         binding.mainTopbarTb.title = Constants.ALBUM_TITLE
-        binding.selectBtn.text = Constants.ADD_DESC
+        binding.selectBtn.text = ""
     }
 }

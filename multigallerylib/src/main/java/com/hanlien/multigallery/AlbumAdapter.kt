@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hanlien.multigallery.databinding.ItemAlbumBinding
 import com.hanlien.multigallery.model.Album
 
-class AlbumAdapter : ListAdapter<Album, AlbumAdapter.AlbumViewHolder>(AlbumDiffCallback()) {
+class AlbumAdapter(
+    private val listener: AlbumClickListener
+) : ListAdapter<Album, AlbumAdapter.AlbumViewHolder>(AlbumDiffCallback()) {
 
     lateinit var binding: ItemAlbumBinding
 
@@ -28,11 +30,13 @@ class AlbumAdapter : ListAdapter<Album, AlbumAdapter.AlbumViewHolder>(AlbumDiffC
             binding.album = item
 
             IABinding.albumImageSiv.setOnClickListener {
-                if(IABinding.albumSelectFrameV.visibility == View.VISIBLE) {
-                    IABinding.albumSelectFrameV.visibility = View.GONE
-                } else if(IABinding.albumSelectFrameV.visibility == View.GONE) {
-                    IABinding.albumSelectFrameV.visibility = View.VISIBLE
-                }
+                listener.onClickAlbum(item.title)
+//                if(IABinding.albumSelectFrameV.visibility == View.VISIBLE) {
+//                    IABinding.albumSelectFrameV.visibility = View.GONE
+//                } else if(IABinding.albumSelectFrameV.visibility == View.GONE) {
+//                    IABinding.albumSelectFrameV.visibility = View.VISIBLE
+//                }
+
             }
         }
     }
