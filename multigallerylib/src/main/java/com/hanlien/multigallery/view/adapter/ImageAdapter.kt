@@ -1,4 +1,4 @@
-package com.hanlien.multigallery
+package com.hanlien.multigallery.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,9 @@ import com.hanlien.multigallery.databinding.ItemImageBinding
 import com.hanlien.multigallery.listener.ImageClickListener
 import com.hanlien.multigallery.model.Image
 
-class ImageAdapter(val listener: ImageClickListener) : ListAdapter<Image, ImageAdapter.ImageViewHolder>(ImageDiffCallback()) {
+class ImageAdapter(val listener: ImageClickListener) : ListAdapter<Image, ImageAdapter.ImageViewHolder>(
+    ImageDiffCallback()
+) {
 
     private lateinit var binding: ItemImageBinding
 

@@ -1,4 +1,4 @@
-package com.hanlien.multigallery
+package com.hanlien.multigallery.view.adapter
 
 import android.graphics.BitmapFactory
 import android.net.Uri

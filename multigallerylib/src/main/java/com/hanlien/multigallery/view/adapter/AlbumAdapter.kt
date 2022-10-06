@@ -1,4 +1,4 @@
-package com.hanlien.multigallery
+package com.hanlien.multigallery.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.hanlien.multigallery.util.CommonUtil.sendImageList
-import com.hanlien.multigallery.ImageAdapter
+import com.hanlien.multigallery.view.adapter.ImageAdapter
 import com.hanlien.multigallery.listener.ImageClickListener
 import com.hanlien.multigallery.util.ImageGetter
 import com.hanlien.multigallery.databinding.FragmentImageBinding
