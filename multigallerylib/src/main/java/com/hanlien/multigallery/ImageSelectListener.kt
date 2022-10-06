@@ -1,7 +1,8 @@
 package com.hanlien.multigallery
 
-import com.hanlien.multigallery.model.Image
+import java.io.File
 
 interface ImageSelectListener {
-    fun selectImage(image: Image)
+    fun getImageUrls(urls: List<String>)
+    fun getImageFiles(files: List<File>)
 }

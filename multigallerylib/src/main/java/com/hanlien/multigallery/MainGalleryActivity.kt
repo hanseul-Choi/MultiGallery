@@ -9,9 +9,8 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
-import com.hanlien.multigallery.Constants.sendImageList
+import com.hanlien.multigallery.CommonUtil.sendImageList
 import com.hanlien.multigallery.databinding.ActivityMultigalleryMainBinding
 
 /**
@@ -94,12 +93,19 @@ class MainGalleryActivity : AppCompatActivity() {
 
             if (supportFragmentManager.findFragmentByTag(Constants.IMAGE_FRAGMENT_ID)?.isVisible == true) {
                 // Image Add 작업
-                Toast.makeText(this, "click send", Toast.LENGTH_SHORT).show()
-
+                val imageUrls = ArrayList<String>()
                 for(i in sendImageList) {
                     Log.d("image", "$i")
+                    imageUrls.add(i.path ?: "")
                 }
 
+                CommonUtil.listener.getImageUrls(imageUrls)
+
+                if(sendImageList.size != 0 && sendImageList.size != CommonUtil.numImage) {
+                    finish()
+                } else {
+                    Toast.makeText(this, "The number of images must be greater than 0 and less than ${CommonUtil.numImage}", Toast.LENGTH_SHORT).show()
+                }
             } else if (supportFragmentManager.findFragmentByTag(Constants.ALBUM_FRAGMENT_ID)?.isVisible == true) {
 //                moveToImageView()
             }

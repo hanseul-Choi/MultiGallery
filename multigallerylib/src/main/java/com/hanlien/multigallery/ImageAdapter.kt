@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hanlien.multigallery.databinding.ItemImageBinding
 import com.hanlien.multigallery.model.Image
 
-class ImageAdapter(val listener: ImageSelectListener) : ListAdapter<Image, ImageAdapter.ImageViewHolder>(ImageDiffCallback()) {
+class ImageAdapter(val listener: ImageClickListener) : ListAdapter<Image, ImageAdapter.ImageViewHolder>(ImageDiffCallback()) {
 
     private lateinit var binding: ItemImageBinding
 

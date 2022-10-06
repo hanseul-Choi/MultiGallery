@@ -8,13 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.hanlien.multigallery.Constants.sendImageList
+import com.hanlien.multigallery.CommonUtil.sendImageList
 import com.hanlien.multigallery.databinding.FragmentImageBinding
-import com.hanlien.multigallery.model.Album
 import com.hanlien.multigallery.model.Image
 import java.lang.Exception
 
-class ImageFragment : Fragment(), ImageSelectListener {
+class ImageFragment : Fragment(), ImageClickListener {
 
     private lateinit var binding: FragmentImageBinding
     private lateinit var result: String

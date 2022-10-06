@@ -14,6 +14,4 @@ object Constants {
 
     const val PERMISSION_WRITE_REQUEST_CODE = 1000
     const val PERMISSION_READ_REQUEST_CODE = 1001
-
-    val sendImageList = ArrayList<Image>()
 }
