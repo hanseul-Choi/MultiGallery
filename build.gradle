@@ -1,10 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = '1.7.20-Beta'
+    ext.kotlin_version = '1.7.10'
     repositories {
         mavenCentral()
     }
     dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -17,3 +18,5 @@ plugins {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+group='com.github.hanseul-Choi'
