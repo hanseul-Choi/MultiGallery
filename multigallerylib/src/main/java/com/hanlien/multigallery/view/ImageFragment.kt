@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.hanlien.multigallery.util.CommonUtil.sendImageList
 import com.hanlien.multigallery.view.adapter.ImageAdapter
@@ -31,8 +30,6 @@ class ImageFragment : Fragment(), ImageClickListener {
         binding = FragmentImageBinding.inflate(inflater, container, false)
 
         result = arguments?.getString("album", "") ?: ""
-
-        Toast.makeText(requireContext(), result, Toast.LENGTH_SHORT).show()
 
         return binding.root
     }

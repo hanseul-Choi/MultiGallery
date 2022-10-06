@@ -82,8 +82,6 @@ class MainGalleryActivity : AppCompatActivity() {
 
         // back button
         binding.mainTopbarTb.setNavigationOnClickListener {
-            Toast.makeText(this, "click back", Toast.LENGTH_SHORT).show()
-
             if (supportFragmentManager.findFragmentByTag(Constants.IMAGE_FRAGMENT_ID)?.isVisible == true) {
                 moveToAlbumView()
             } else if (supportFragmentManager.findFragmentByTag(Constants.ALBUM_FRAGMENT_ID)?.isVisible == true) {
@@ -133,7 +131,7 @@ class MainGalleryActivity : AppCompatActivity() {
                     if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                         moveToAlbumView()
                     } else {
-                        Toast.makeText(this, "권한을 허용하셔야 사용이 가능합니다.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Please allow your permission", Toast.LENGTH_SHORT).show()
 
                         finish()
                     }
