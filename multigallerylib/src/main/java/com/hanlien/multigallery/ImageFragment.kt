@@ -39,6 +39,9 @@ class ImageFragment : Fragment(), ImageClickListener {
 
         val adapter = ImageAdapter(this)
 
+//        imageList.clear()
+//        sendImageList.clear()
+
         getImages()
 
         adapter.submitList(
