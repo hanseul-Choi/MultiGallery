@@ -1,13 +1,11 @@
 package com.hanlien.sample
 
-import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
-import com.hanlien.multigallery.ImageSelectListener
-import com.hanlien.multigallery.MainGalleryActivity
+import com.hanlien.multigallery.listener.ImageSelectListener
 import com.hanlien.multigallery.MultiGallery
 import com.hanlien.sample.databinding.ActivityMainBinding
 import java.io.File

@@ -1,4 +1,4 @@
-package com.hanlien.multigallery
+package com.hanlien.multigallery.util
 
 import android.content.ContentResolver
 import android.database.Cursor

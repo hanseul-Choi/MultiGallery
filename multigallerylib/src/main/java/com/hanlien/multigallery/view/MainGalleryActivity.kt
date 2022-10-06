@@ -1,17 +1,18 @@
-package com.hanlien.multigallery
+package com.hanlien.multigallery.view
 
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import com.hanlien.multigallery.CommonUtil.sendImageList
+import com.hanlien.multigallery.util.CommonUtil
+import com.hanlien.multigallery.util.CommonUtil.sendImageList
+import com.hanlien.multigallery.util.Constants
+import com.hanlien.multigallery.R
 import com.hanlien.multigallery.databinding.ActivityMultigalleryMainBinding
 import java.io.File
 

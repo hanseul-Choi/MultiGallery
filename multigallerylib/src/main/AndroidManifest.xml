@@ -10,7 +10,7 @@
         android:requestLegacyExternalStorage="true"
         android:allowBackup="true">
 
-        <activity android:name=".MainGalleryActivity"
+        <activity android:name=".view.MainGalleryActivity"
             android:theme="@style/Theme.Basic.NoActionBar"
             android:exported="true">
             <intent-filter>

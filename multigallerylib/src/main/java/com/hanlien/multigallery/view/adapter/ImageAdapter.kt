@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hanlien.multigallery.databinding.ItemImageBinding
+import com.hanlien.multigallery.listener.ImageClickListener
 import com.hanlien.multigallery.model.Image
 
 class ImageAdapter(val listener: ImageClickListener) : ListAdapter<Image, ImageAdapter.ImageViewHolder>(ImageDiffCallback()) {

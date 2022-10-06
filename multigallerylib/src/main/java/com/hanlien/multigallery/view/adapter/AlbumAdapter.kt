@@ -1,12 +1,12 @@
 package com.hanlien.multigallery
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hanlien.multigallery.databinding.ItemAlbumBinding
+import com.hanlien.multigallery.listener.AlbumClickListener
 import com.hanlien.multigallery.model.Album
 
 class AlbumAdapter(

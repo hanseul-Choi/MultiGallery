@@ -2,6 +2,9 @@ package com.hanlien.multigallery
 
 import android.content.Context
 import android.content.Intent
+import com.hanlien.multigallery.listener.ImageSelectListener
+import com.hanlien.multigallery.util.CommonUtil
+import com.hanlien.multigallery.view.MainGalleryActivity
 
 /**
  *  bridge code

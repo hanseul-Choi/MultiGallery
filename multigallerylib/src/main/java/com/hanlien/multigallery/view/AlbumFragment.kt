@@ -1,4 +1,4 @@
-package com.hanlien.multigallery
+package com.hanlien.multigallery.view
 
 import android.os.Bundle
 import android.provider.MediaStore
@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.hanlien.multigallery.AlbumAdapter
+import com.hanlien.multigallery.listener.AlbumClickListener
+import com.hanlien.multigallery.util.ImageGetter
 import com.hanlien.multigallery.databinding.FragmentAlbumBinding
 import com.hanlien.multigallery.model.Album
 import java.lang.Exception
