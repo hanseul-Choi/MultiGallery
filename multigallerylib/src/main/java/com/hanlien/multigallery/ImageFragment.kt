@@ -8,12 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.hanlien.multigallery.Constants.sendImageList
 import com.hanlien.multigallery.databinding.FragmentImageBinding
 import com.hanlien.multigallery.model.Album
 import com.hanlien.multigallery.model.Image
 import java.lang.Exception
 
-class ImageFragment : Fragment() {
+class ImageFragment : Fragment(), ImageSelectListener {
 
     private lateinit var binding: FragmentImageBinding
     private lateinit var result: String
@@ -37,7 +38,7 @@ class ImageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ImageAdapter()
+        val adapter = ImageAdapter(this)
 
         getImages()
 
@@ -82,6 +83,15 @@ class ImageFragment : Fragment() {
             cursor.close()
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    // 어댑터에서 이미지 선택 시 호출
+    override fun selectImage(image: Image) {
+        if(!sendImageList.contains(image)) {
+            sendImageList.add(image)
+        } else {
+            sendImageList.remove(image)
         }
     }
 }

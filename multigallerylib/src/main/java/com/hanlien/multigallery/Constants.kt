@@ -1,5 +1,7 @@
 package com.hanlien.multigallery
 
+import com.hanlien.multigallery.model.Image
+
 object Constants {
     const val ALBUM_FRAGMENT_ID = "ALBUM"
     const val IMAGE_FRAGMENT_ID = "IMAGE"
@@ -12,4 +14,6 @@ object Constants {
 
     const val PERMISSION_WRITE_REQUEST_CODE = 1000
     const val PERMISSION_READ_REQUEST_CODE = 1001
+
+    val sendImageList = ArrayList<Image>()
 }

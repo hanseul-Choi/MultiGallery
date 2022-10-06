@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hanlien.multigallery.databinding.ItemImageBinding
 import com.hanlien.multigallery.model.Image
 
-class ImageAdapter : ListAdapter<Image, ImageAdapter.ImageViewHolder>(ImageDiffCallback()) {
+class ImageAdapter(val listener: ImageSelectListener) : ListAdapter<Image, ImageAdapter.ImageViewHolder>(ImageDiffCallback()) {
 
     private lateinit var binding: ItemImageBinding
 
@@ -34,6 +34,8 @@ class ImageAdapter : ListAdapter<Image, ImageAdapter.ImageViewHolder>(ImageDiffC
                 } else if(binding.imageSelectFrameV.visibility == View.GONE) {
                     binding.imageSelectFrameV.visibility = View.VISIBLE
                 }
+
+                listener.selectImage(image)
             }
         }
     }
