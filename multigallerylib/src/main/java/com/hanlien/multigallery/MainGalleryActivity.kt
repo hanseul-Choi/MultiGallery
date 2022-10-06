@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.hanlien.multigallery.CommonUtil.sendImageList
 import com.hanlien.multigallery.databinding.ActivityMultigalleryMainBinding
+import java.io.File
 
 /**
  *  -- 작업 순서 --
@@ -95,17 +96,21 @@ class MainGalleryActivity : AppCompatActivity() {
             if (supportFragmentManager.findFragmentByTag(Constants.IMAGE_FRAGMENT_ID)?.isVisible == true) {
                 // Image Add 작업
                 val imageUrls = ArrayList<String>()
+                val imageFiles = ArrayList<File>()
+
                 for(i in sendImageList) {
-                    Log.d("image", "$i")
                     imageUrls.add(i.path ?: "")
+                    i.path?.let { it1 -> File(it1) }?.let { it2 -> imageFiles.add(it2) }
                 }
 
-                CommonUtil.listener.getImageUrls(imageUrls)
+                val sendImageSize = sendImageList.size
 
-                if(sendImageList.size != 0 && sendImageList.size != CommonUtil.numImage) {
+                if(sendImageSize != 0 && sendImageSize <= 20  && sendImageSize != CommonUtil.numImage) {
+                    CommonUtil.listener.getImageUrls(imageUrls)
+                    CommonUtil.listener.getImageFiles(imageFiles)
                     finish()
                 } else {
-                    Toast.makeText(this, "The number of images must be greater than 0 and less than ${CommonUtil.numImage}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "The number of images must be greater than 0 and less than ${CommonUtil.numImage} and less than 20", Toast.LENGTH_SHORT).show()
                 }
             } else if (supportFragmentManager.findFragmentByTag(Constants.ALBUM_FRAGMENT_ID)?.isVisible == true) {
 //                moveToImageView()

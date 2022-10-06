@@ -25,7 +25,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun getImageFiles(files: List<File>) {
-
+                for(i in files) {
+                    Log.d("file", "$i")
+                }
             }
         }
 
