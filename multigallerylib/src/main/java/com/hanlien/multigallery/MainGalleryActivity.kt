@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.hanlien.multigallery.CommonUtil.sendImageList
 import com.hanlien.multigallery.databinding.ActivityMultigalleryMainBinding
 
@@ -165,5 +166,13 @@ class MainGalleryActivity : AppCompatActivity() {
 
         binding.mainTopbarTb.title = Constants.ALBUM_TITLE
         binding.selectBtn.text = ""
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.findFragmentByTag(Constants.IMAGE_FRAGMENT_ID)?.isVisible == true) {
+            moveToAlbumView()
+        } else {
+            finish()
+        }
     }
 }
