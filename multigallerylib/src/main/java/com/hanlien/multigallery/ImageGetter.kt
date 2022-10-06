@@ -13,7 +13,6 @@ class ImageGetter(private val resolver: ContentResolver?) {
         val what = arrayOf(
             MediaStore.Images.ImageColumns._ID,
             MediaStore.Images.ImageColumns.TITLE,
-            MediaStore.Images.ImageColumns.DATE_TAKEN,
             MediaStore.Images.ImageColumns.DATA
         )
 
@@ -22,7 +21,7 @@ class ImageGetter(private val resolver: ContentResolver?) {
         queryUri = queryUri.buildUpon().appendQueryParameter("limit", "1").build()
 
         return resolver?.query(
-            queryUri, what, MediaStore.Images.Media.BUCKET_DISPLAY_NAME + " =?", arrayOf(album), orderBy)!!
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI, what, MediaStore.Images.Media.BUCKET_DISPLAY_NAME + " =?", arrayOf(album), MediaStore.Images.Media.DATE_ADDED)!!
     }
 
     fun getAlbumCursor() : Cursor {
