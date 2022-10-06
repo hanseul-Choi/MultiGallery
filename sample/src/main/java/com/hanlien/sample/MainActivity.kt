@@ -1,6 +1,7 @@
 package com.hanlien.sample
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,11 +18,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
         val listener = object: ImageSelectListener {
             override fun getImageUrls(urls: List<String>) {
                 for(i in urls) {
                     Log.d("url", "$i")
                 }
+
+                Log.d("url", "urls 0 is ${urls[0]}")
+                binding.ivTest.setImageURI(Uri.parse(urls[0]))
             }
 
             override fun getImageFiles(files: List<File>) {
@@ -30,8 +36,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.testBtn.setOnClickListener {
             MultiGallery()
