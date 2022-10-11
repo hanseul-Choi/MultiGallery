@@ -1,6 +1,6 @@
 # MultiLibrary
 
-This library navigates your gallery and imports the image url or file instead.
+This library navigates your gallery and imports the image url or file instead. </br></br>
 This library allows you to apply the following features:
 - Explore the user's image and use the album category to distinguish it.
 - **Limits the number of image selections** for the user.
@@ -21,6 +21,7 @@ allprojects {
 		}
 	}
 ```
+</br>
 
 If your gradle version is greater than 7.1.0, add this code in your setting.gradle
 ```gradle
@@ -31,6 +32,7 @@ dependencyResolutionManagement {
     }
 }
 ```
+</br>
 
 Add Multigallery library and glide in your app module gradle
 ```gradle
@@ -44,6 +46,7 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVer"
 }
 ```
+</br>
 
 Because this library uses other activities, you need to add code in Manifest.
 ```xml
@@ -54,6 +57,7 @@ Because this library uses other activities, you need to add code in Manifest.
     </application>
 </manifest>
 ```
+</br>
 
 Now, you can use this Multigallery library!
 
@@ -94,6 +98,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
 ```
+</br>
 
 and enjoy your coding ~ ^-^
 
