@@ -7,31 +7,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import com.hanlien.multigallery.R
 import com.hanlien.multigallery.util.CommonUtil.sendImageList
 import com.hanlien.multigallery.view.adapter.ImageAdapter
 import com.hanlien.multigallery.listener.ImageClickListener
 import com.hanlien.multigallery.util.ImageGetter
-import com.hanlien.multigallery.databinding.FragmentImageBinding
 import com.hanlien.multigallery.model.Image
 import java.lang.Exception
 
 class ImageFragment : Fragment(), ImageClickListener {
-
-    private lateinit var binding: FragmentImageBinding
+private lateinit var imageFragmentView: View
     private lateinit var result: String
 
     var imageList = ArrayList<Image>()
+
+    private lateinit var imageListRv: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentImageBinding.inflate(inflater, container, false)
-
         result = arguments?.getString("album", "") ?: ""
 
-        return binding.root
+        imageFragmentView =  inflater.inflate(R.layout.fragment_image, container, false)
+
+        findViewsId()
+
+        return imageFragmentView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,7 +52,11 @@ class ImageFragment : Fragment(), ImageClickListener {
             imageList
         )
 
-        binding.imageListRv.adapter = adapter
+        imageListRv.adapter = adapter
+    }
+
+    private fun findViewsId() {
+        imageListRv = imageFragmentView.findViewById(R.id.image_list_rv)
     }
 
     private fun getImages() {
