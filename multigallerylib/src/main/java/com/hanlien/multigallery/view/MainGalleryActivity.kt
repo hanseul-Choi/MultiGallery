@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.Toast
@@ -41,6 +42,9 @@ class MainGalleryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_multigallery_main)
+
+        // initial measurement of width
+        CommonUtil.gettingDeviceWidth(this)
 
         findViewsId()
 

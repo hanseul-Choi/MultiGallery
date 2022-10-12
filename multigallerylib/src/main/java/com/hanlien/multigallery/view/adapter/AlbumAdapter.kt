@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.setPadding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.hanlien.multigallery.R
 import com.hanlien.multigallery.listener.AlbumClickListener
 import com.hanlien.multigallery.model.Album
+import com.hanlien.multigallery.util.CommonUtil
 
 class AlbumAdapter(
     private val listener: AlbumClickListener
@@ -20,6 +22,11 @@ class AlbumAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         albumView = LayoutInflater.from(parent.context).inflate(R.layout.item_album, parent, false)
+
+        val layoutParams = albumView.layoutParams
+        layoutParams.width = (parent.width * 0.33).toInt()
+        albumView.layoutParams = layoutParams
+        albumView.setPadding(CommonUtil.dpToPx(albumView.context, 5f))
 
         return AlbumViewHolder(albumView)
     }

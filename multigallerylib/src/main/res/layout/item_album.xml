@@ -13,22 +13,10 @@
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/sample_image" />
-
-    <View
-        android:id="@+id/album_select_frame_v"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:background="@drawable/image_select_frame"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/album_image_siv"
-        app:layout_constraintEnd_toEndOf="@id/album_image_siv"
-        app:layout_constraintStart_toStartOf="@id/album_image_siv"
-        app:layout_constraintTop_toTopOf="@id/album_image_siv" />
 
     <TextView
         android:id="@+id/album_select_title_tv"

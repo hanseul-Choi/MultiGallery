@@ -4,6 +4,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.setPadding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.hanlien.multigallery.R
 import com.hanlien.multigallery.listener.ImageClickListener
 import com.hanlien.multigallery.model.Image
+import com.hanlien.multigallery.util.CommonUtil
 
 class ImageAdapter(val listener: ImageClickListener) : ListAdapter<Image, ImageAdapter.ImageViewHolder>(
     ImageDiffCallback()
@@ -19,6 +21,11 @@ class ImageAdapter(val listener: ImageClickListener) : ListAdapter<Image, ImageA
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         itemImageView = LayoutInflater.from(parent.context).inflate(R.layout.item_image, parent, false)
+
+        val layoutParams = itemImageView.layoutParams
+        layoutParams.width = (parent.width * 0.33).toInt()
+        itemImageView.layoutParams = layoutParams
+        itemImageView.setPadding(CommonUtil.dpToPx(itemImageView.context, 5f))
 
         return ImageViewHolder(itemImageView)
     }
