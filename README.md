@@ -9,17 +9,29 @@ This library allows you to apply the following features:
 
 Our library is available through jitpack.io. Thanks to jitpack.io team.
 
-## Setting
+## Release Note
+
+### v1.0.2
+- multiGallery library is open!
+
+### v1.0.3
+- remove dependency
+	- Glide
+	- themes
+	- dataBinding
+- show resized images
+
+## Setting - v.1.0.2
 
 If your gradle version is lower than 7.1.0, add this code in your project gradle.
 
 ```gradle
 allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
 	}
+}
 ```
 </br>
 
@@ -61,6 +73,43 @@ Because this library uses other activities, you need to add code in Manifest.
 
 Now, you can use this Multigallery library!
 
+## Setting - v.1.0.3 ↑
+
+If your gradle version is lower than 7.1.0, add this code in your project gradle.
+
+```gradle
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+</br>
+
+If your gradle version is greater than 7.1.0, add this code in your setting.gradle
+```gradle
+dependencyResolutionManagement {
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+</br>
+
+Add Multigallery library
+
+```gradle
+dependencies {
+    // implement latest version
+    implementation 'com.github.hanseul-Choi:MultiGallery:1.0.3'
+}
+```
+</br>
+
+Now, you can use this Multigallery library!
+
 ### Use
 
 you can use this library code in activity. 
@@ -79,8 +128,6 @@ class MainActivity : AppCompatActivity() {
                 for(i in urls) {
                     // get image url
                 }
-
-                Log.d("url", "urls 0 is ${urls[0]}")
             }
 
             override fun getImageFiles(files: List<File>) {
@@ -103,10 +150,8 @@ class MainActivity : AppCompatActivity() {
 and enjoy your coding ~ ^-^
 
 ## Subsequent Corrections
-- No more needs tools:replace"android:theme"
-- No more needs Databinding
-- No more needs Glide Library
-- Dynamically resize images
+- No showing Logs
+- If you don't have an image, show text
 
 ## Thanks to
 - jitpack.io teams
