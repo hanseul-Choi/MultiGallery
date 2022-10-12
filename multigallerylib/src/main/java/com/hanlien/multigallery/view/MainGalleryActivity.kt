@@ -43,8 +43,8 @@ class MainGalleryActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_multigallery_main)
 
-        // initial measurement of width
-        CommonUtil.gettingDeviceWidth(this)
+        // initial measurement of width - for future ^-^
+//        CommonUtil.gettingDeviceWidth(this)
 
         findViewsId()
 
