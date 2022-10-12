@@ -1,17 +1,16 @@
 package com.hanlien.multigallery.view.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
 import com.hanlien.multigallery.R
 import com.hanlien.multigallery.listener.ImageClickListener
 import com.hanlien.multigallery.model.Image
-import java.io.File
 
 class ImageAdapter(val listener: ImageClickListener) : ListAdapter<Image, ImageAdapter.ImageViewHolder>(
     ImageDiffCallback()
@@ -37,9 +36,7 @@ class ImageAdapter(val listener: ImageClickListener) : ListAdapter<Image, ImageA
             imageSelectFrameV = itemView.findViewById(R.id.image_select_frame_v)
 
             image.path?.let {
-                Glide.with(imageSiv)
-                    .load(File(it))
-                    .into(imageSiv)
+                imageSiv.setImageURI(Uri.parse(it))
             }
 
             imageSiv.setOnClickListener {

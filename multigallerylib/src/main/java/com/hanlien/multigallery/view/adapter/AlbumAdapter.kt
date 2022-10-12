@@ -1,5 +1,6 @@
 package com.hanlien.multigallery.view.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,12 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
 import com.hanlien.multigallery.R
 import com.hanlien.multigallery.listener.AlbumClickListener
 import com.hanlien.multigallery.model.Album
-import java.io.File
 
 class AlbumAdapter(
     private val listener: AlbumClickListener
@@ -37,9 +36,7 @@ class AlbumAdapter(
             albumSelectTitleTv.text = item.title
 
             item.path?.let {
-                Glide.with(albumImageSiv)
-                    .load(File(it))
-                    .into(albumImageSiv)
+                albumImageSiv.setImageURI(Uri.parse(it))
             }
 
             albumImageSiv.setOnClickListener {
