@@ -7,17 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import com.hanlien.multigallery.R
 import com.hanlien.multigallery.view.adapter.AlbumAdapter
 import com.hanlien.multigallery.listener.AlbumClickListener
 import com.hanlien.multigallery.util.ImageGetter
-import com.hanlien.multigallery.databinding.FragmentAlbumBinding
 import com.hanlien.multigallery.model.Album
 import java.lang.Exception
 import kotlin.collections.ArrayList
 
 class AlbumFragment : Fragment(), AlbumClickListener {
-
-    private lateinit var binding: FragmentAlbumBinding
+    private lateinit var albumFragmentView: View
+    private lateinit var albumListRv: RecyclerView
 
     var albumList = ArrayList<Album>()
     var albumBucket = ArrayList<String>()
@@ -27,9 +28,16 @@ class AlbumFragment : Fragment(), AlbumClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAlbumBinding.inflate(inflater, container, false)
 
-        return binding.root
+        albumFragmentView = inflater.inflate(R.layout.fragment_album, container, false)
+
+        findViewsId()
+
+        return albumFragmentView
+    }
+
+    private fun findViewsId() {
+        albumListRv = albumFragmentView.findViewById(R.id.album_list_rv)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,7 +51,7 @@ class AlbumFragment : Fragment(), AlbumClickListener {
             albumList
         )
 
-        binding.albumListRv.adapter = adapter
+        albumListRv.adapter = adapter
     }
 
     private fun getAlbums() {

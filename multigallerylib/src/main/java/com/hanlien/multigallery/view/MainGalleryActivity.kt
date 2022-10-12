@@ -4,16 +4,18 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
+import com.google.android.material.appbar.MaterialToolbar
 import com.hanlien.multigallery.util.CommonUtil
 import com.hanlien.multigallery.util.CommonUtil.sendImageList
 import com.hanlien.multigallery.util.Constants
 import com.hanlien.multigallery.R
-import com.hanlien.multigallery.databinding.ActivityMultigalleryMainBinding
 import java.io.File
 
 /**
@@ -31,11 +33,20 @@ import java.io.File
 
 class MainGalleryActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMultigalleryMainBinding
+    private lateinit var fragmentContainerFl: FrameLayout
+    private lateinit var mainTopBarTb: MaterialToolbar
+    private lateinit var selectBtn: Button
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setContentView(R.layout.activity_multigallery_main)
+
+        // initial measurement of width - for future ^-^
+//        CommonUtil.gettingDeviceWidth(this)
+
+        findViewsId()
 
         // 권한 확인
         val writePermission = ContextCompat.checkSelfPermission(
@@ -64,15 +75,19 @@ class MainGalleryActivity : AppCompatActivity() {
             )
         }
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_multigallery_main)
-
         settingInitFragment()
         settingListener()
     }
 
+    private fun findViewsId() {
+        fragmentContainerFl = findViewById(R.id.fragment_container_fl)
+        mainTopBarTb = findViewById(R.id.main_topbar_tb)
+        selectBtn = findViewById(R.id.select_btn)
+    }
+
     private fun settingInitFragment() {
         supportFragmentManager.beginTransaction().add(
-            binding.fragmentContainerFl.id,
+            fragmentContainerFl.id,
             AlbumFragment(),
             Constants.ALBUM_FRAGMENT_ID
         ).commitAllowingStateLoss()
@@ -81,7 +96,7 @@ class MainGalleryActivity : AppCompatActivity() {
     private fun settingListener() {
 
         // back button
-        binding.mainTopbarTb.setNavigationOnClickListener {
+        mainTopBarTb.setNavigationOnClickListener {
             if (supportFragmentManager.findFragmentByTag(Constants.IMAGE_FRAGMENT_ID)?.isVisible == true) {
                 moveToAlbumView()
             } else if (supportFragmentManager.findFragmentByTag(Constants.ALBUM_FRAGMENT_ID)?.isVisible == true) {
@@ -90,8 +105,7 @@ class MainGalleryActivity : AppCompatActivity() {
         }
 
         // Add button
-        binding.selectBtn.setOnClickListener {
-
+        selectBtn.setOnClickListener {
             if (supportFragmentManager.findFragmentByTag(Constants.IMAGE_FRAGMENT_ID)?.isVisible == true) {
                 // Image Add 작업
                 val imageUrls = ArrayList<String>()
@@ -149,7 +163,7 @@ class MainGalleryActivity : AppCompatActivity() {
 
         supportFragmentManager.beginTransaction()
             .replace(
-                binding.fragmentContainerFl.id,
+                fragmentContainerFl.id,
                 ImageFragment().apply {
                       arguments = bundle
                 },
@@ -157,19 +171,19 @@ class MainGalleryActivity : AppCompatActivity() {
             )
             .commitAllowingStateLoss()
 
-        binding.mainTopbarTb.title = Constants.IMAGE_TITLE
-        binding.selectBtn.text = Constants.SEND_DESC
+        mainTopBarTb.title = Constants.IMAGE_TITLE
+        selectBtn.text = Constants.SEND_DESC
     }
 
     private fun moveToAlbumView() {
         supportFragmentManager.beginTransaction().replace(
-            binding.fragmentContainerFl.id,
+            fragmentContainerFl.id,
             AlbumFragment(),
             Constants.ALBUM_FRAGMENT_ID
         ).commitAllowingStateLoss()
 
-        binding.mainTopbarTb.title = Constants.ALBUM_TITLE
-        binding.selectBtn.text = ""
+        mainTopBarTb.title = Constants.ALBUM_TITLE
+        selectBtn.text = ""
     }
 
     override fun onBackPressed() {
