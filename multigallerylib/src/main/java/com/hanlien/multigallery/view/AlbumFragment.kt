@@ -2,7 +2,6 @@ package com.hanlien.multigallery.view
 
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,8 +72,6 @@ class AlbumFragment : Fragment(), AlbumClickListener {
                     val ids = cursor.getLong(bucketId)
                     val bucketNames = cursor.getString(bucketName)
                     val datas = cursor.getString(data)
-
-                    Log.d("imageUri", "$ids, $bucketNames, $datas")
 
                     if(!albumBucket.contains(bucketNames)){
                         albumList.add(

@@ -2,7 +2,6 @@ package com.hanlien.multigallery.view
 
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -75,11 +74,9 @@ private lateinit var imageFragmentView: View
                         cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.DATA)
 
                     //2. 인덱스를 바탕으로 데이터를 Cursor로부터 취득하기
-                    val id = cursor.getLong(imageId)
-                    val title = cursor.getString(imageTitle)
+//                    val id = cursor.getLong(imageId)
+//                    val title = cursor.getString(imageTitle)
                     val data = cursor.getString(imageData)
-
-                    Log.d("imageUri", "$id, $title, $data")
 
                     imageList.add(
                         Image(
