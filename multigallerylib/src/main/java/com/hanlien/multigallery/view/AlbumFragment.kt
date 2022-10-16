@@ -5,6 +5,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.hanlien.multigallery.R
@@ -18,6 +19,7 @@ import kotlin.collections.ArrayList
 class AlbumFragment : Fragment(), AlbumClickListener {
     private lateinit var albumFragmentView: View
     private lateinit var albumListRv: RecyclerView
+    private lateinit var noImageTv: TextView
 
     var albumList = ArrayList<Album>()
     var albumBucket = ArrayList<String>()
@@ -37,6 +39,7 @@ class AlbumFragment : Fragment(), AlbumClickListener {
 
     private fun findViewsId() {
         albumListRv = albumFragmentView.findViewById(R.id.album_list_rv)
+        noImageTv = albumFragmentView.findViewById(R.id.no_image_text)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,6 +52,13 @@ class AlbumFragment : Fragment(), AlbumClickListener {
         adapter.submitList(
             albumList
         )
+
+        // 이미지가 없는 경우,
+        if(albumList.size == 0) {
+            noImageTv.visibility = View.VISIBLE
+        } else {
+            noImageTv.visibility = View.GONE
+        }
 
         albumListRv.adapter = adapter
     }

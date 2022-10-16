@@ -2,4 +2,5 @@
     <string name="explain_require_permission_title_text">필수 권한</string>
     <string name="package_usage_stats_permission_explain">갤러리 오픈을 위한 권한입니다.</string>
     <string name="permission_dialog_allow">확인</string>
+    <string name="no_image_text">No Image</string>
 </resources>
