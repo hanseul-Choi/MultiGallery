@@ -1,6 +1,10 @@
 package com.hanlien.multigallery.view.adapter
 
+import android.content.ContentResolver
+import android.graphics.ImageDecoder
 import android.net.Uri
+import android.os.Build
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +17,9 @@ import com.hanlien.multigallery.R
 import com.hanlien.multigallery.listener.ImageClickListener
 import com.hanlien.multigallery.model.Image
 import com.hanlien.multigallery.util.CommonUtil
+import java.io.File
 
-class ImageAdapter(val listener: ImageClickListener) : ListAdapter<Image, ImageAdapter.ImageViewHolder>(
+class ImageAdapter(val listener: ImageClickListener, val contentResolver: ContentResolver) : ListAdapter<Image, ImageAdapter.ImageViewHolder>(
     ImageDiffCallback()
 ) {
     private lateinit var itemImageView: View
@@ -46,8 +51,14 @@ class ImageAdapter(val listener: ImageClickListener) : ListAdapter<Image, ImageA
             imageSiv = itemView.findViewById(R.id.image_siv)
             imageSelectFrameV = itemView.findViewById(R.id.image_select_frame_v)
 
-            image.path?.let {
-                imageSiv.setImageURI(Uri.parse(it))
+            image.path?.let { // bitmap 전략으로 cache 전략 이용하기
+                val bitmap = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    ImageDecoder.decodeBitmap(ImageDecoder.createSource(contentResolver, Uri.fromFile(File(it))))
+                } else {
+                    MediaStore.Images.Media.getBitmap(contentResolver, Uri.fromFile(File(it)))
+                }
+
+                imageSiv.setImageBitmap(bitmap)
             }
 
             imageSiv.setOnClickListener {
