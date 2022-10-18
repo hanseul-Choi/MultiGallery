@@ -50,7 +50,9 @@ class AlbumFragment : Fragment(), AlbumClickListener {
             getAlbums()
 
             activity?.runOnUiThread {
-                val adapter = AlbumAdapter(this)
+                val adapter = AlbumAdapter(this).apply {
+                    setHasStableIds(true)
+                }
 
                 adapter.submitList(
                     albumList

@@ -20,6 +20,10 @@ class AlbumAdapter(
 ) : ListAdapter<Album, AlbumAdapter.AlbumViewHolder>(AlbumDiffCallback()) {
     private lateinit var albumView: View
 
+    override fun getItemId(position: Int): Long {
+        return getItem(position).hashCode().toLong()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         albumView = LayoutInflater.from(parent.context).inflate(R.layout.item_album, parent, false)
 

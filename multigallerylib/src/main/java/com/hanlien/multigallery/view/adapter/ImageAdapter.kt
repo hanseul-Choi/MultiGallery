@@ -19,6 +19,10 @@ class ImageAdapter(val listener: ImageClickListener) : ListAdapter<Image, ImageA
 ) {
     private lateinit var itemImageView: View
 
+    override fun getItemId(position: Int): Long {
+        return getItem(position).hashCode().toLong()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         itemImageView = LayoutInflater.from(parent.context).inflate(R.layout.item_image, parent, false)
 
