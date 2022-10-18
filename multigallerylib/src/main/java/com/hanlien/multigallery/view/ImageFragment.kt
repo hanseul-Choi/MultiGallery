@@ -48,7 +48,7 @@ private lateinit var imageFragmentView: View
             getImages()
 
             activity?.runOnUiThread {
-                val adapter = ImageAdapter(this, requireActivity().contentResolver).apply {
+                val adapter = ImageAdapter(this).apply {
                     setHasStableIds(true)
                 }
 
