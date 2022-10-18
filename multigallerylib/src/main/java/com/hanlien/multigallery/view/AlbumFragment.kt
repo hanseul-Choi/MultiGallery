@@ -15,6 +15,7 @@ import com.hanlien.multigallery.util.ImageGetter
 import com.hanlien.multigallery.model.Album
 import java.lang.Exception
 import kotlin.collections.ArrayList
+import kotlin.concurrent.thread
 
 class AlbumFragment : Fragment(), AlbumClickListener {
     private lateinit var albumFragmentView: View
@@ -45,22 +46,26 @@ class AlbumFragment : Fragment(), AlbumClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = AlbumAdapter(this)
+        thread(start = true) {
+            getAlbums()
 
-        getAlbums()
+            activity?.runOnUiThread {
+                val adapter = AlbumAdapter(this)
 
-        adapter.submitList(
-            albumList
-        )
+                adapter.submitList(
+                    albumList
+                )
 
-        // 이미지가 없는 경우,
-        if(albumList.size == 0) {
-            noImageTv.visibility = View.VISIBLE
-        } else {
-            noImageTv.visibility = View.GONE
+                // 이미지가 없는 경우,
+                if(albumList.size == 0) {
+                    noImageTv.visibility = View.VISIBLE
+                } else {
+                    noImageTv.visibility = View.GONE
+                }
+
+                albumListRv.adapter = adapter
+            }
         }
-
-        albumListRv.adapter = adapter
     }
 
     private fun getAlbums() {

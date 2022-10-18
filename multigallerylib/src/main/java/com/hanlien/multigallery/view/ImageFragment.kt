@@ -14,6 +14,7 @@ import com.hanlien.multigallery.listener.ImageClickListener
 import com.hanlien.multigallery.util.ImageGetter
 import com.hanlien.multigallery.model.Image
 import java.lang.Exception
+import kotlin.concurrent.thread
 
 class ImageFragment : Fragment(), ImageClickListener {
 private lateinit var imageFragmentView: View
@@ -40,18 +41,22 @@ private lateinit var imageFragmentView: View
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ImageAdapter(this)
+        thread(start = true) {
+            imageList.clear()
+            sendImageList.clear()
 
-        imageList.clear()
-        sendImageList.clear()
+            getImages()
 
-        getImages()
+            activity?.runOnUiThread {
+                val adapter = ImageAdapter(this)
 
-        adapter.submitList(
-            imageList
-        )
+                adapter.submitList(
+                    imageList
+                )
 
-        imageListRv.adapter = adapter
+                imageListRv.adapter = adapter
+            }
+        }
     }
 
     private fun findViewsId() {
