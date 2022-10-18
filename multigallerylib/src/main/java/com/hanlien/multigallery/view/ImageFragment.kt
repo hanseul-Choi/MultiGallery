@@ -48,6 +48,11 @@ private lateinit var imageFragmentView: View
             getImages()
 
             activity?.runOnUiThread {
+                imageListRv.apply {
+                    setHasFixedSize(true) // 고정 크기
+                    setItemViewCacheSize(100)
+                }
+
                 val adapter = ImageAdapter(this).apply {
                     setHasStableIds(true)
                 }
